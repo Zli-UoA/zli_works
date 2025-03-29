@@ -1,4 +1,6 @@
 import { LuArrowRight } from "react-icons/lu";
+import { Link, href } from "react-router";
+import { Button } from "./ui/button";
 
 export const Hero = () => {
   return (
@@ -14,24 +16,16 @@ export const Hero = () => {
               <p className="mt-3 text-base text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
                 Zli(ジライ)はLT会やハッカソンを主催する会津大学公認の総合技術系サークルです。
               </p>
-              <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
-                <div className="rounded-md shadow">
-                  <a
-                    href="https://join.zli.works"
-                    className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-black bg-brand-primary hover:bg-opacity-90 md:py-4 md:text-lg md:px-10"
-                  >
+              <div className="gap-4 mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
+                <Button asChild size="lg">
+                  <Link to={href("/join/form")}>
                     参加する
-                    <LuArrowRight className="ml-2 w-5 h-5" />
-                  </a>
-                </div>
-                <div className="mt-3 sm:mt-0 sm:ml-3">
-                  <a
-                    href="https://forms.gle/7KVrev2REB6BBBb78"
-                    className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-brand-primary bg-brand-dark hover:bg-brand-secondary md:py-4 md:text-lg md:px-10"
-                  >
-                    連絡する
-                  </a>
-                </div>
+                    <LuArrowRight />
+                  </Link>
+                </Button>
+                <Button asChild size="lg" variant="ghost">
+                  <a href="https://forms.gle/7KVrev2REB6BBBb78">連絡する</a>
+                </Button>
               </div>
             </div>
           </main>
