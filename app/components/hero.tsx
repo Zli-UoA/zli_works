@@ -18,7 +18,7 @@ export const Hero = () => {
               </p>
               <div className="gap-4 mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                 <Button asChild size="lg">
-                  <Link to={href("/join/form")}>
+                  <Link to={href("/join")}>
                     参加する
                     <LuArrowRight />
                   </Link>
