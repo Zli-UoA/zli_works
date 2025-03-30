@@ -1,7 +1,7 @@
 import { LuArrowRight, LuBook, LuMic, LuStar } from "react-icons/lu";
 import { Link, href } from "react-router";
-import { Card } from "~/components/card";
 import { Button } from "~/components/ui/button";
+import { EventCard } from "./eventCard";
 
 export default () => {
   return (
@@ -69,17 +69,17 @@ export default () => {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <Card
+          <EventCard
             icon={<LuMic className="w-8 h-8" />}
             title="LT会"
             description="企業を招待して行なう大LTをはじめ、月に1度の学内LTや他大学とのLT会など、メンバーがアウトプットをする場を提供します。"
           />
-          <Card
+          <EventCard
             icon={<LuBook className="w-8 h-8" />}
             title="勉強会"
             description="メンバーが自分の得意な分野や気になっている言語など、一緒に勉強したい仲間を集めて勉強会を開催します。"
           />
-          <Card
+          <EventCard
             icon={<LuStar className="w-8 h-8" />}
             title="ハッカソン"
             description="主に学生主体でハッカソンを開催します。新入部員に開発をするきっかけを与え、成長を促します。"
