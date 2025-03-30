@@ -16,14 +16,23 @@ export const Hero = () => {
               <p className="mt-3 text-base text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
                 Zli(ジライ)はLT会やハッカソンを主催する会津大学公認の総合技術系サークルです。
               </p>
-              <div className="gap-4 mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
-                <Button asChild size="lg">
+              <div className="flex flex-col gap-4 mt-5 justify-center sm:flex-row lg:justify-start">
+                <Button
+                  asChild
+                  size="lg"
+                  className="text-lg h-14 w-full sm:w-fit"
+                >
                   <Link to={href("/join")}>
                     参加する
                     <LuArrowRight />
                   </Link>
                 </Button>
-                <Button asChild size="lg" variant="ghost">
+                <Button
+                  asChild
+                  size="lg"
+                  variant="ghost"
+                  className="text-lg h-14 w-full sm:w-fit"
+                >
                   <a href="https://forms.gle/7KVrev2REB6BBBb78">連絡する</a>
                 </Button>
               </div>
