@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { LuMenu, LuSquareArrowOutUpRight, LuX } from "react-icons/lu";
 import { Link, href } from "react-router";
-import { Logo } from "./logo";
+import { Logo } from "~/components/logo";
 
 type Links = {
   name: string;

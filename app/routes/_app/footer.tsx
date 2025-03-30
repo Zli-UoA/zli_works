@@ -1,6 +1,6 @@
 import { LuMail } from "react-icons/lu";
 import { SiGithub, SiX } from "react-icons/si";
-import { Logo } from "./logo";
+import { Logo } from "~/components/logo";
 
 export const Footer = () => {
   return (
