@@ -43,7 +43,7 @@ const formSchema = z
     },
   );
 
-export const action = async ({ request, context }: Route.ActionArgs) => {
+export const action = async ({ request }: Route.ActionArgs) => {
   const parsed = await formSchema.safeParseAsync(await request.json());
 
   if (!parsed.success) {

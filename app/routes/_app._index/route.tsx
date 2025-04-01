@@ -1,9 +1,18 @@
 import { LuArrowRight, LuBook, LuMic, LuStar } from "react-icons/lu";
 import { Link, href } from "react-router";
+import { getConnpassEvents } from "~/.server/connpass";
 import { Button } from "~/components/ui/button";
+import type { Route } from "./+types/route";
+import { Card } from "./card";
 import { EventCard } from "./eventCard";
 
-export default () => {
+export const loader = async () => {
+  const events = await getConnpassEvents();
+
+  return { events };
+};
+
+export default ({ loaderData }: Route.ComponentProps) => {
   return (
     <div className="min-h-screen bg-brand-secondary">
       <div className="relative overflow-hidden bg-brand-dark text-brand-light">
@@ -69,21 +78,48 @@ export default () => {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <EventCard
+          <Card
             icon={<LuMic className="w-8 h-8" />}
             title="LT会"
             description="企業を招待して行なう大LTをはじめ、月に1度の学内LTや他大学とのLT会など、メンバーがアウトプットをする場を提供します。"
           />
-          <EventCard
+          <Card
             icon={<LuBook className="w-8 h-8" />}
             title="勉強会"
             description="メンバーが自分の得意な分野や気になっている言語など、一緒に勉強したい仲間を集めて勉強会を開催します。"
           />
-          <EventCard
+          <Card
             icon={<LuStar className="w-8 h-8" />}
             title="ハッカソン"
             description="主に学生主体でハッカソンを開催します。新入部員に開発をするきっかけを与え、成長を促します。"
           />
+        </div>
+      </section>
+      <section className="py-20 px-4 max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl font-bold text-brand-light mb-4">
+            開催前のイベント
+          </h2>
+          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+            ぜひご参加ください！
+          </p>
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {loaderData.events
+            .filter((event) => event.open_status === "preopen")
+            .map((event) => {
+              return (
+                <EventCard
+                  key={event.id}
+                  title={event.title}
+                  ccatch={event.catch ?? ""}
+                  url={event.url}
+                  image={event.image_url ?? ""}
+                  status={event.open_status}
+                  date={event.started_at}
+                />
+              );
+            })}
         </div>
       </section>
     </div>
