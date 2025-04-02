@@ -34,6 +34,32 @@ export type ConnpassEvent = {
 const mockData: { events: ConnpassEvent[] } = {
   events: [
     {
+      id: 351045,
+      title: "技術座談会 2025",
+      catch: "得意な技術を持つ学生と、技術に興味がある学生の座談会",
+      description: "",
+      url: "https://zli.connpass.com/event/351045/",
+      image_url:
+        "https://media.connpass.com/thumbs/2d/d7/2dd7db96c16ca0f8454473b3d830d43e.png",
+      hash_tag: "",
+      started_at: "2025-04-13T13:00:00+09:00",
+      ended_at: "2025-04-13T20:30:00+09:00",
+      limit: 0,
+      event_type: "participation",
+      open_status: "preopen",
+      series: null,
+      address: "福島県会津若松市一箕町大字鶴賀上居合90",
+      place: "会津若松市一箕町大字鶴賀上居合90",
+      lat: 0,
+      lon: 0,
+      owner_id: 0,
+      owner_nickname: "",
+      owner_display_name: "",
+      accepted: 0,
+      waiting: 0,
+      updated_at: "",
+    },
+    {
       id: 349133,
       title: "Aizu Hack / Re:Aizu Hack",
       catch: "学び、挑戦し、成長するハッカソン。",
