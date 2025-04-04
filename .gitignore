@@ -9,6 +9,7 @@
 # Cloudflare
 .mf
 .wrangler
+.dev.vars
 
 # direnv
 .direnv/

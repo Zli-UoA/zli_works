@@ -1,14 +1,13 @@
 import { LuArrowRight, LuBook, LuMic, LuStar } from "react-icons/lu";
 import { Link, href } from "react-router";
-import { getConnpassEvents } from "~/.server/connpass";
+import { getConnpassEventPreOpen } from "~/.server/connpass";
 import { Button } from "~/components/ui/button";
 import type { Route } from "./+types/route";
 import { Card } from "./card";
 import { EventCard } from "./eventCard";
 
-export const loader = async () => {
-  const events = await getConnpassEvents();
-
+export const loader = async ({ context }: Route.LoaderArgs) => {
+  const events = await getConnpassEventPreOpen(context.cloudflare.env);
   return { events };
 };
 
@@ -69,8 +68,8 @@ export default ({ loaderData }: Route.ComponentProps) => {
         </div>
       </div>
       <div className="flex flex-col gap-20 px-4 py-20 max-w-7xl mx-auto">
-        <section>
-          <div className="text-center mb-16">
+        <section className="flex flex-col gap-16">
+          <div className="text-center">
             <h2 className="text-3xl font-bold text-brand-light mb-4">
               主なイベント
             </h2>
@@ -96,33 +95,47 @@ export default ({ loaderData }: Route.ComponentProps) => {
             />
           </div>
         </section>
-        <section>
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-brand-light mb-4">
-              開催前のイベント
-            </h2>
-            <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-              ぜひご参加ください！
-            </p>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {loaderData.events
-              .filter((event) => event.open_status === "preopen")
-              .map((event) => {
-                return (
-                  <EventCard
-                    key={event.id}
-                    title={event.title}
-                    ccatch={event.catch ?? ""}
-                    url={event.url}
-                    image={event.image_url ?? ""}
-                    status={event.open_status}
-                    date={event.started_at}
-                  />
-                );
-              })}
-          </div>
-        </section>
+        {loaderData.events && (
+          <section className="flex flex-col gap-16">
+            <div className="text-center">
+              <h2 className="text-3xl font-bold text-brand-light mb-4">
+                開催前のイベント
+              </h2>
+              <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+                ぜひご参加ください！
+              </p>
+            </div>
+            <div className="flex flex-col gap-4">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {loaderData.events.map((event) => {
+                  return (
+                    <EventCard
+                      key={event.id}
+                      title={event.title}
+                      ccatch={event.catch ?? ""}
+                      url={event.url}
+                      image={event.image_url ?? ""}
+                      status={event.open_status}
+                      date={event.started_at}
+                    />
+                  );
+                })}
+              </div>
+              <div className="flex justify-end">
+                <Button asChild variant="link">
+                  <a
+                    href="https://zli.connpass.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    すべてのイベントを見る
+                    <LuArrowRight />
+                  </a>
+                </Button>
+              </div>
+            </div>
+          </section>
+        )}
       </div>
     </div>
   );
