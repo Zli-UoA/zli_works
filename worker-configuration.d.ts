@@ -2,5 +2,5 @@
 
 interface Env {
   VALUE_FROM_CLOUDFLARE: "Hello from Cloudflare";
-  "X-API-Key": string;
+  CONNPASS_API_KEY: string;
 }

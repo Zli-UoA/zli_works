@@ -51,7 +51,7 @@ type Page = {
 const connpassAPIFetcher = (url: URL, env: CloudflareEnvironment) =>
   fetch(url, {
     headers: {
-      "X-API-Key": env["X-API-Key"],
+      "X-API-Key": env.CONNPASS_API_KEY,
     },
     cf: {
       cacheEverything: true,
