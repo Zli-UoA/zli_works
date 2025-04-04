@@ -30,6 +30,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml" />
+        <meta property="og:site_name" content="Zli" />
+        <meta property="og:title" content="Zli" />
+        <meta property="og:description" content="会津大学公認サークル「Zli」" />
+        <meta property="og:url" content="https://zli.works" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://zli.works/logo.png" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@ZliOfficial" />
         <Meta />
         <Links />
       </head>
