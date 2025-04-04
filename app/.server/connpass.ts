@@ -46,19 +46,23 @@ type ConnpassEventsSchema = z.infer<typeof connpassEventsSchema>;
 type Page = {
   start: number;
   count: number;
-}
+};
 
-const connpassAPIFetcher = (url : URL, env: CloudflareEnvironment) => fetch(url, {
-  headers: {
-    "X-API-Key": env["X-API-Key"],
-  },
-  cf: {
-    cacheEverything: true,
-  },
-});
+const connpassAPIFetcher = (url: URL, env: CloudflareEnvironment) =>
+  fetch(url, {
+    headers: {
+      "X-API-Key": env["X-API-Key"],
+    },
+    cf: {
+      cacheEverything: true,
+    },
+  });
 
-export const getConnpassEvents = async (env: CloudflareEnvironment, page: Page) : Promise<ConnpassEventsSchema | null> => {
-  const url = new URL(`https://connpass.com/api/v2/events`);
+export const getConnpassEvents = async (
+  env: CloudflareEnvironment,
+  page: Page,
+): Promise<ConnpassEventsSchema | null> => {
+  const url = new URL("https://connpass.com/api/v2/events");
   const queryParams = new URLSearchParams({
     subdomain: "zli",
     order: "2", // 開催日時順
@@ -66,7 +70,7 @@ export const getConnpassEvents = async (env: CloudflareEnvironment, page: Page) 
     count: page.count.toString(),
   });
   url.search = queryParams.toString();
-  
+
   const response = await connpassAPIFetcher(url, env);
   if (!response.ok) {
     console.error("Error fetching data:", response.statusText);
@@ -75,7 +79,7 @@ export const getConnpassEvents = async (env: CloudflareEnvironment, page: Page) 
 
   const data = await response.json();
   const result = connpassEventsSchema.safeParse(data);
-  if(!result.success) {
+  if (!result.success) {
     console.error("Validation error:", result.error);
     return null;
   }
@@ -83,8 +87,10 @@ export const getConnpassEvents = async (env: CloudflareEnvironment, page: Page) 
   return result.data;
 };
 
-export const getConnpassEventPreOpen = async (env: CloudflareEnvironment) : Promise<ConnpassEventSchema[] | null> => {
-  const url = new URL(`https://connpass.com/api/v2/events`);
+export const getConnpassEventPreOpen = async (
+  env: CloudflareEnvironment,
+): Promise<ConnpassEventSchema[] | null> => {
+  const url = new URL("https://connpass.com/api/v2/events");
   const queryParams = new URLSearchParams({
     subdomain: "zli",
     order: "2", // 開催日時順
@@ -92,7 +98,7 @@ export const getConnpassEventPreOpen = async (env: CloudflareEnvironment) : Prom
     count: "10",
   });
   url.search = queryParams.toString();
-  
+
   const response = await connpassAPIFetcher(url, env);
   if (!response.ok) {
     console.error("Error fetching data:", response.statusText);
@@ -101,15 +107,17 @@ export const getConnpassEventPreOpen = async (env: CloudflareEnvironment) : Prom
 
   const data = await response.json();
   const result = connpassEventsSchema.safeParse(data);
-  if(!result.success) {
+  if (!result.success) {
     console.error("Validation error:", result.error);
     return null;
   }
 
-  const preOpenEvents = result.data.events.filter(event => event.open_status === "preopen");
+  const preOpenEvents = result.data.events.filter(
+    (event) => event.open_status === "preopen",
+  );
   if (preOpenEvents.length === 0) {
     return [];
   }
 
   return preOpenEvents;
-}
+};

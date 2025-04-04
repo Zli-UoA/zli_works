@@ -6,7 +6,7 @@ import type { Route } from "./+types/route";
 import { Card } from "./card";
 import { EventCard } from "./eventCard";
 
-export const loader = async ({context}: Route.LoaderArgs) => {
+export const loader = async ({ context }: Route.LoaderArgs) => {
   const events = await getConnpassEventPreOpen(context.cloudflare.env);
   return { events };
 };
@@ -95,18 +95,18 @@ export default ({ loaderData }: Route.ComponentProps) => {
             />
           </div>
         </section>
-        {loaderData.events && <section>
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-brand-light mb-4">
-              開催前のイベント
-            </h2>
-            <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-              ぜひご参加ください！
-            </p>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {loaderData.events
-              .map((event) => {
+        {loaderData.events && (
+          <section>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold text-brand-light mb-4">
+                開催前のイベント
+              </h2>
+              <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+                ぜひご参加ください！
+              </p>
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {loaderData.events.map((event) => {
                 return (
                   <EventCard
                     key={event.id}
@@ -119,8 +119,9 @@ export default ({ loaderData }: Route.ComponentProps) => {
                   />
                 );
               })}
-          </div>
-        </section>}
+            </div>
+          </section>
+        )}
       </div>
     </div>
   );
