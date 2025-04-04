@@ -21,7 +21,7 @@ export const connpassEventSchema = z.object({
   limit: z.number().nullable(),
   event_type: z.enum(["participation", "advertisement"]),
   open_status: z.enum(["preopen", "open", "close", "cancelled"]),
-  series: connpassGroupSchema.nullable(),
+  group: connpassGroupSchema.nullable(),
   address: z.string().nullable(),
   place: z.string().nullable(),
   lat: z.union([z.number(), z.string(), z.null()]),
