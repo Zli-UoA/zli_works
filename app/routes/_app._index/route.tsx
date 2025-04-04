@@ -1,14 +1,13 @@
 import { LuArrowRight, LuBook, LuMic, LuStar } from "react-icons/lu";
 import { Link, href } from "react-router";
-import { getConnpassEvents } from "~/.server/connpass";
+import { getConnpassEventPreOpen } from "~/.server/connpass";
 import { Button } from "~/components/ui/button";
 import type { Route } from "./+types/route";
 import { Card } from "./card";
 import { EventCard } from "./eventCard";
 
-export const loader = async () => {
-  const events = await getConnpassEvents();
-
+export const loader = async ({context}: Route.LoaderArgs) => {
+  const events = await getConnpassEventPreOpen(context.cloudflare.env);
   return { events };
 };
 
@@ -96,7 +95,7 @@ export default ({ loaderData }: Route.ComponentProps) => {
             />
           </div>
         </section>
-        <section>
+        {loaderData.events && <section>
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-brand-light mb-4">
               開催前のイベント
@@ -107,7 +106,6 @@ export default ({ loaderData }: Route.ComponentProps) => {
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {loaderData.events
-              .filter((event) => event.open_status === "preopen")
               .map((event) => {
                 return (
                   <EventCard
@@ -122,7 +120,7 @@ export default ({ loaderData }: Route.ComponentProps) => {
                 );
               })}
           </div>
-        </section>
+        </section>}
       </div>
     </div>
   );
