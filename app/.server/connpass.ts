@@ -1,93 +1,115 @@
-export type ConnpassGroup = {
-  id: number;
-  subdomain: string | null;
-  title: string;
-  url: string;
+import { z } from "zod";
+
+export const connpassGroupSchema = z.object({
+  id: z.number(),
+  subdomain: z.string().nullable(),
+  title: z.string(),
+  url: z.string(),
+});
+export type ConnpassGroupSchema = z.infer<typeof connpassGroupSchema>;
+
+export const connpassEventSchema = z.object({
+  id: z.number(),
+  title: z.string(),
+  catch: z.string().nullable(),
+  description: z.string(),
+  url: z.string(),
+  image_url: z.string().nullable(),
+  hash_tag: z.string().nullable(),
+  started_at: z.string().nullable(),
+  ended_at: z.string().nullable(),
+  limit: z.number().nullable(),
+  event_type: z.enum(["participation", "advertisement"]),
+  open_status: z.enum(["preopen", "open", "close", "cancelled"]),
+  series: connpassGroupSchema.nullable(),
+  address: z.string().nullable(),
+  place: z.string().nullable(),
+  lat: z.union([z.number(), z.string(), z.null()]),
+  lon: z.union([z.number(), z.string(), z.null()]),
+  owner_id: z.union([z.number(), z.null()]),
+  owner_nickname: z.string(),
+  owner_display_name: z.string(),
+  accepted: z.number(),
+  waiting: z.number(),
+  updated_at: z.string(),
+});
+export type ConnpassEventSchema = z.infer<typeof connpassEventSchema>;
+
+const connpassEventsSchema = z.object({
+  events: z.array(connpassEventSchema),
+  results_available: z.number(),
+  results_returned: z.number(),
+  results_start: z.number(),
+});
+type ConnpassEventsSchema = z.infer<typeof connpassEventsSchema>;
+
+type Page = {
+  start: number;
+  count: number;
+}
+
+const connpassAPIFetcher = (url : URL, env: CloudflareEnvironment) => fetch(url, {
+  headers: {
+    "X-API-Key": env["X-API-Key"],
+  },
+  cf: {
+    cacheEverything: true,
+  },
+});
+
+export const getConnpassEvents = async (env: CloudflareEnvironment, page: Page) : Promise<ConnpassEventsSchema | null> => {
+  const url = new URL(`https://connpass.com/api/v2/events`);
+  const queryParams = new URLSearchParams({
+    subdomain: "zli",
+    order: "2", // 開催日時順
+    start: page.start.toString(),
+    count: page.count.toString(),
+  });
+  url.search = queryParams.toString();
+  
+  const response = await connpassAPIFetcher(url, env);
+  if (!response.ok) {
+    console.error("Error fetching data:", response.statusText);
+    return null;
+  }
+
+  const data = await response.json();
+  const result = connpassEventsSchema.safeParse(data);
+  if(!result.success) {
+    console.error("Validation error:", result.error);
+    return null;
+  }
+
+  return result.data;
 };
 
-export type ConnpassEvent = {
-  id: number;
-  title: string;
-  catch: string | null;
-  description: string;
-  url: string;
-  image_url: string | null;
-  hash_tag: string | null;
-  started_at: string | null;
-  ended_at: string | null;
-  limit: number | null;
-  event_type: "participation" | "advertisement";
-  open_status: "preopen" | "open" | "close" | "cancelled";
-  series: ConnpassGroup | null;
-  address: string | null;
-  place: string | null;
-  lat: number | string | null;
-  lon: number | string | null;
-  owner_id: number | null;
-  owner_nickname: string;
-  owner_display_name: string;
-  accepted: number;
-  waiting: number;
-  updated_at: string;
-};
+export const getConnpassEventPreOpen = async (env: CloudflareEnvironment) : Promise<ConnpassEventSchema[] | null> => {
+  const url = new URL(`https://connpass.com/api/v2/events`);
+  const queryParams = new URLSearchParams({
+    subdomain: "zli",
+    order: "2", // 開催日時順
+    start: "0",
+    count: "10",
+  });
+  url.search = queryParams.toString();
+  
+  const response = await connpassAPIFetcher(url, env);
+  if (!response.ok) {
+    console.error("Error fetching data:", response.statusText);
+    return null;
+  }
 
-const mockData: { events: ConnpassEvent[] } = {
-  events: [
-    {
-      id: 351045,
-      title: "技術座談会 2025",
-      catch: "得意な技術を持つ学生と、技術に興味がある学生の座談会",
-      description: "",
-      url: "https://zli.connpass.com/event/351045/",
-      image_url:
-        "https://media.connpass.com/thumbs/2d/d7/2dd7db96c16ca0f8454473b3d830d43e.png",
-      hash_tag: "",
-      started_at: "2025-04-13T13:00:00+09:00",
-      ended_at: "2025-04-13T20:30:00+09:00",
-      limit: 0,
-      event_type: "participation",
-      open_status: "preopen",
-      series: null,
-      address: "福島県会津若松市一箕町大字鶴賀上居合90",
-      place: "会津若松市一箕町大字鶴賀上居合90",
-      lat: 0,
-      lon: 0,
-      owner_id: 0,
-      owner_nickname: "",
-      owner_display_name: "",
-      accepted: 0,
-      waiting: 0,
-      updated_at: "",
-    },
-    {
-      id: 349133,
-      title: "Aizu Hack / Re:Aizu Hack",
-      catch: "学び、挑戦し、成長するハッカソン。",
-      description: "",
-      url: "https://zli.connpass.com/event/349133/",
-      image_url:
-        "https://media.connpass.com/thumbs/cf/9b/cf9b8698e53cafb17da32841489af5fc.png",
-      hash_tag: "",
-      started_at: "2025-06-14T00:00:00+09:00",
-      ended_at: "2025-06-22T23:30:00+09:00",
-      limit: 0,
-      event_type: "participation",
-      open_status: "preopen",
-      series: null,
-      address: "福島県会津若松市一箕町大字鶴賀上居合90",
-      place: "会津若松市一箕町大字鶴賀上居合90",
-      lat: 0,
-      lon: 0,
-      owner_id: 0,
-      owner_nickname: "",
-      owner_display_name: "",
-      accepted: 0,
-      waiting: 0,
-      updated_at: "",
-    },
-  ],
-};
+  const data = await response.json();
+  const result = connpassEventsSchema.safeParse(data);
+  if(!result.success) {
+    console.error("Validation error:", result.error);
+    return null;
+  }
 
-export const getConnpassEvents = async () => {
-  return mockData.events;
-};
+  const preOpenEvents = result.data.events.filter(event => event.open_status === "preopen");
+  if (preOpenEvents.length === 0) {
+    return [];
+  }
+
+  return preOpenEvents;
+}
