@@ -128,7 +128,8 @@ export default ({ loaderData }: Route.ComponentProps) => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    すべてのイベントを見る<LuArrowRight />
+                    すべてのイベントを見る
+                    <LuArrowRight />
                   </a>
                 </Button>
               </div>

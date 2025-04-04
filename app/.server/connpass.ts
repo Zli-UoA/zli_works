@@ -112,9 +112,9 @@ export const getConnpassEventPreOpen = async (
     return null;
   }
 
-  const preOpenEvents = result.data.events.filter(
-    (event) => event.open_status === "preopen",
-  ).toReversed();
+  const preOpenEvents = result.data.events
+    .filter((event) => event.open_status === "preopen")
+    .toReversed();
   if (preOpenEvents.length === 0) {
     return [];
   }
