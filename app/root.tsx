@@ -10,7 +10,47 @@ import {
 import type { Route } from "./+types/root";
 import "./app.css";
 
+export const meta: Route.MetaFunction = () => [
+  {
+    title: "Zli",
+    description: "会津大学公認サークル「Zli」",
+  },
+  {
+    property: "og:site_name",
+    content: "Zli",
+  },
+  {
+    property: "og:title",
+    content: "Zli",
+  },
+  {
+    property: "og:description",
+    content: "会津大学公認サークル「Zli」",
+  },
+  {
+    property: "og:url",
+    content: "https://zli.works",
+  },
+  {
+    property: "og:type",
+    content: "website",
+  },
+  {
+    property: "og:image",
+    content: "https://zli.works/logo.png",
+  },
+  {
+    name: "twitter:card",
+    content: "summary",
+  },
+  {
+    name: "twitter:site",
+    content: "@ZliOfficial",
+  },
+];
+
 export const links: Route.LinksFunction = () => [
+  { rel: "icon", href: "/favicon.svg", sizes: "any", type: "image/svg+xml" },
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
     rel: "preconnect",
@@ -25,8 +65,9 @@ export const links: Route.LinksFunction = () => [
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="ja">
       <head>
+        <title>Zli</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
