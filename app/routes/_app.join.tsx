@@ -27,7 +27,9 @@ import type { Route } from "./+types/_app.join";
 
 const formSchema = z
   .object({
-    id: z.string().min(1, "このフィールドは必須です"),
+    id: z.string().min(1, "このフィールドは必須です").regex(/^^[smd]\d{7}$$/, {
+      message: "学籍番号はs,m,dのいずれかから始まる8桁の数字です。例: s1330000",
+    }),
     name: z.string().min(1, "このフィールドは必須です"),
     nickname: z.string(),
     route: z.array(
