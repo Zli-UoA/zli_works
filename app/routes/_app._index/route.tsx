@@ -68,8 +68,8 @@ export default ({ loaderData }: Route.ComponentProps) => {
         </div>
       </div>
       <div className="flex flex-col gap-20 px-4 py-20 max-w-7xl mx-auto">
-        <section>
-          <div className="text-center mb-16">
+        <section className="flex flex-col gap-16">
+          <div className="text-center">
             <h2 className="text-3xl font-bold text-brand-light mb-4">
               主なイベント
             </h2>
@@ -96,8 +96,8 @@ export default ({ loaderData }: Route.ComponentProps) => {
           </div>
         </section>
         {loaderData.events && (
-          <section>
-            <div className="text-center mb-16">
+          <section className="flex flex-col gap-16">
+            <div className="text-center">
               <h2 className="text-3xl font-bold text-brand-light mb-4">
                 開催前のイベント
               </h2>
@@ -105,20 +105,33 @@ export default ({ loaderData }: Route.ComponentProps) => {
                 ぜひご参加ください！
               </p>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {loaderData.events.map((event) => {
-                return (
-                  <EventCard
-                    key={event.id}
-                    title={event.title}
-                    ccatch={event.catch ?? ""}
-                    url={event.url}
-                    image={event.image_url ?? ""}
-                    status={event.open_status}
-                    date={event.started_at}
-                  />
-                );
-              })}
+            <div className="flex flex-col gap-4">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {loaderData.events.map((event) => {
+                  return (
+                    <EventCard
+                      key={event.id}
+                      title={event.title}
+                      ccatch={event.catch ?? ""}
+                      url={event.url}
+                      image={event.image_url ?? ""}
+                      status={event.open_status}
+                      date={event.started_at}
+                    />
+                  );
+                })}
+              </div>
+              <div className="flex justify-end">
+                <Button asChild variant="link">
+                  <a
+                    href="https://zli.connpass.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    すべてのイベントを見る<LuArrowRight />
+                  </a>
+                </Button>
+              </div>
             </div>
           </section>
         )}
