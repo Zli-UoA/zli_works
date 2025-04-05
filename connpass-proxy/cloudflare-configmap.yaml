@@ -1,0 +1,13 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cloudflared-config
+data:
+  config.yaml: |
+    tunnel: connpass-api-proxy-tunnel
+    credentials-file: /etc/cloudflared/credentials.json
+    ingress:
+      - hostname: connpass-api-proxy.zli.works
+        service: http://connpass-api-proxy:80
+      - service: http_status:404
