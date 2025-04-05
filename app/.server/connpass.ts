@@ -52,8 +52,6 @@ const connpassAPIFetcher = (url: URL, env: CloudflareEnvironment) =>
   fetch(url, {
     headers: {
       "X-API-Key": env.CONNPASS_API_KEY,
-      "CF-Access-Client-Id": env.CF_ACCESS_CLIENT_ID,
-      "CF-Access-Client-Secret": env.CF_ACCESS_CLIENT_SECRET,
     },
     cf: {
       cacheEverything: true,
@@ -64,7 +62,7 @@ export const getConnpassEvents = async (
   env: CloudflareEnvironment,
   page: Page,
 ): Promise<ConnpassEventsSchema | null> => {
-  const url = new URL("https://connpass-api-proxy.zli.works/api/v2/events");
+  const url = new URL("https://connpass.com/api/v2/events");
   const queryParams = new URLSearchParams({
     subdomain: "zli",
     order: "2", // 開催日時順
@@ -92,7 +90,7 @@ export const getConnpassEvents = async (
 export const getConnpassEventPreOpen = async (
   env: CloudflareEnvironment,
 ): Promise<ConnpassEventSchema[] | null> => {
-  const url = new URL("https://connpass-api-proxy.zli.works/api/v2/events");
+  const url = new URL("https://connpass.com/api/v2/events");
   const queryParams = new URLSearchParams({
     subdomain: "zli",
     order: "2", // 開催日時順
