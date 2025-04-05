@@ -73,7 +73,6 @@ export const getConnpassEvents = async (
   });
   url.search = queryParams.toString();
 
-  console.log("env in connpass.ts: ", env.CONNPASS_API_KEY);
   const response = await connpassAPIFetcher(url, env);
   if (!response.ok) {
     console.error("Error fetching data:", response.statusText);
