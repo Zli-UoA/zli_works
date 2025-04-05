@@ -51,6 +51,7 @@ type Page = {
 const connpassAPIFetcher = (url: URL, env: CloudflareEnvironment) =>
   fetch(url, {
     headers: {
+      "User-Agent": "zli.works (contact@zli.works)",
       "X-API-Key": env.CONNPASS_API_KEY,
     },
     cf: {
