@@ -72,6 +72,7 @@ export default () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: "",
+      name: "",
       content: "",
     },
   });
