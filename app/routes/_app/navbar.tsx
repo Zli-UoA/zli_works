@@ -13,6 +13,7 @@ const links: Links = [
   { name: "blog", url: "https://blog.zli.works", isExternal: false },
   { name: "join", url: href("/join"), isExternal: false },
   { name: "contact", url: href("/contact"), isExternal: false },
+  { name: "Twitter", url: "https://x.com/ZliOfficial", isExternal: true },
   { name: "connpass", url: "https://zli.connpass.com", isExternal: true },
   { name: "GitHub", url: "https://github.com/Zli-UoA", isExternal: true },
 ];
