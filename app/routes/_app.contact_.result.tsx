@@ -11,12 +11,13 @@ export default () => {
       <div className="py-20 px-4 max-w-4xl mx-auto">
         <Card>
           <CardHeader>
-            <CardTitle className="text-xl font-bold">Zli入部フォーム</CardTitle>
+            <CardTitle className="text-xl font-bold">
+              お問い合わせフォーム
+            </CardTitle>
             <CardDescription className="space-y-3">
-              学内メールにSlackの招待リンクを送りました！
+              送信しました！返信をお待ちください。
             </CardDescription>
           </CardHeader>
-          {/* この後やることとか書く */}
         </Card>
       </div>
     </div>

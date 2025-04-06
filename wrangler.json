@@ -8,5 +8,11 @@
   "vars": { "VALUE_FROM_CLOUDFLARE": "Hello from Cloudflare" },
   "observability": {
     "enabled": true
-  }
+  },
+  "compatibility_flags": ["nodejs_compat"],
+  "send_email": [
+    {
+      "name": "MAIL"
+    }
+  ]
 }

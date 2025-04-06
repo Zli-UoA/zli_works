@@ -2,5 +2,6 @@
 
 interface Env {
   VALUE_FROM_CLOUDFLARE: "Hello from Cloudflare";
-  CONNPASS_API_KEY: string;
+  MAIL_ADDRESS: string;
+  MAIL: SendEmail;
 }

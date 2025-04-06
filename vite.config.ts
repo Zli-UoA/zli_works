@@ -9,6 +9,7 @@ export default defineConfig(({ isSsrBuild }) => ({
     rollupOptions: isSsrBuild
       ? {
           input: "./workers/app.ts",
+          external: ["cloudflare:email"],
         }
       : undefined,
   },
