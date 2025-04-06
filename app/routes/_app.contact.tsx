@@ -44,7 +44,7 @@ const MailContent = ({
   return (
     <div>
       <div>
-        {name}様({email})からお問い会わせです。
+        {name}様({email})からお問い合わせです。
       </div>
       <div>{content}</div>
     </div>
@@ -95,7 +95,7 @@ export default () => {
         <Card>
           <CardHeader>
             <CardTitle className="text-xl font-bold">
-              お問い会わせフォーム
+              お問い合わせフォーム
             </CardTitle>
             <CardDescription className="space-y-3">
               ご入力いただいたメールアドレスに返信します。
