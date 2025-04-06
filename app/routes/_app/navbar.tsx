@@ -12,11 +12,7 @@ type Links = {
 const links: Links = [
   { name: "blog", url: "https://blog.zli.works", isExternal: false },
   { name: "join", url: href("/join"), isExternal: false },
-  {
-    name: "contact",
-    url: "https://forms.gle/7KVrev2REB6BBBb78",
-    isExternal: false,
-  },
+  { name: "contact", url: href("/contact"), isExternal: false },
   { name: "connpass", url: "https://zli.connpass.com", isExternal: true },
   { name: "GitHub", url: "https://github.com/Zli-UoA", isExternal: true },
 ];
