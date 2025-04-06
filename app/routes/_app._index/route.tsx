@@ -43,7 +43,7 @@ export default ({ loaderData }: Route.ComponentProps) => {
                     variant="ghost"
                     className="text-lg h-14 w-full sm:w-fit"
                   >
-                    <a href="https://forms.gle/7KVrev2REB6BBBb78">連絡する</a>
+                    <Link to={href("/contact")}>連絡する</Link>
                   </Button>
                 </div>
               </div>
