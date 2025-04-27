@@ -1,3 +1,4 @@
+import { EmailMessage } from "cloudflare:email";
 import { Mailbox, createMimeMessage } from "mimetext";
 import { renderToStaticMarkup } from "react-dom/server";
 
@@ -11,17 +12,6 @@ export const sendMail = async (
   content: React.ReactNode,
 ) => {
   const contentString = renderToStaticMarkup(content);
-
-  const cloudflareEmail = await import("cloudflare:email").catch((e) => {
-    console.log(e);
-    console.log(contentString);
-  });
-
-  if (cloudflareEmail == null) {
-    return;
-  }
-
-  const { EmailMessage } = cloudflareEmail;
 
   const msg = createMimeMessage();
   msg.setSender({ name: "zli.works", addr: address });
