@@ -33,6 +33,7 @@ export const Navbar = () => {
           <div className="md:hidden flex items-center">
             <button
               type="button"
+              aria-label="menu"
               onClick={() => setIsOpen((isOpen) => !isOpen)}
               className="inline-flex items-center justify-center p-2 rounded-md text-brand-light hover:text-brand-primary focus:outline-none"
             >
