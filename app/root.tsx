@@ -13,7 +13,10 @@ import "./app.css";
 export const meta: Route.MetaFunction = () => [
   {
     title: "Zli",
-    description: "会津大学公認サークル「Zli」",
+  },
+  {
+    name: "description",
+    content: "会津大学公認サークル「Zli」",
   },
   {
     property: "og:site_name",
@@ -67,7 +70,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ja">
       <head>
-        <title>Zli</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
