@@ -61,7 +61,7 @@ export default ({ loaderData }: Route.ComponentProps) => {
             <polygon points="50,0 100,0 50,100 0,100" />
           </svg>
           <img
-            src="/onsen.png"
+            src="/onsen.webp"
             alt="温泉合宿の写真"
             className="h-56 w-full bg-brand-secondary sm:h-72 md:h-96 lg:w-full lg:h-full flex items-center justify-center overflow-hidden object-cover"
           />
