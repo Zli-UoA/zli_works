@@ -36,6 +36,7 @@ const displayStatus = (status: ConnpassEventSchema["open_status"]) => {
 const formatter = Intl.DateTimeFormat("ja-JP", {
   dateStyle: "long",
   timeStyle: "short",
+  timeZone: "Asia/Tokyo",
 });
 
 const displayDate = (dateString: string) => {
