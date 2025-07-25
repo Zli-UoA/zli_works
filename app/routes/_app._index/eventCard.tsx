@@ -1,5 +1,5 @@
 import { LuCalendar } from "react-icons/lu";
-import type { ConnpassEvent } from "~/.server/connpass";
+import type { ConnpassEventSchema } from "~/.server/connpass";
 import { Badge } from "~/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 
@@ -8,11 +8,11 @@ type Props = {
   ccatch: string;
   url: string;
   image: string;
-  status: ConnpassEvent["open_status"];
+  status: ConnpassEventSchema["open_status"];
   date: string | null;
 };
 
-const displayStatus = (status: ConnpassEvent["open_status"]) => {
+const displayStatus = (status: ConnpassEventSchema["open_status"]) => {
   switch (status) {
     case "preopen": {
       return <Badge>開催前</Badge>;
@@ -36,6 +36,7 @@ const displayStatus = (status: ConnpassEvent["open_status"]) => {
 const formatter = Intl.DateTimeFormat("ja-JP", {
   dateStyle: "long",
   timeStyle: "short",
+  timeZone: "Asia/Tokyo",
 });
 
 const displayDate = (dateString: string) => {

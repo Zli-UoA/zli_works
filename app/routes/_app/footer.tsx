@@ -14,18 +14,21 @@ export const Footer = () => {
             <p className="mt-4 text-gray-400">会津大学 総合技術系サークル</p>
             <div className="flex space-x-4 mt-6">
               <a
+                aria-label="GitHub"
                 href="https://github.com/Zli-UoA"
                 className="text-gray-400 hover:text-brand-primary transition-colors"
               >
                 <SiGithub className="h-6 w-6" />
               </a>
               <a
+                aria-label="Twitter"
                 href="https://x.com/ZliOfficial"
                 className="text-gray-400 hover:text-brand-primary transition-colors"
               >
                 <SiX className="h-6 w-6" />
               </a>
               <a
+                aria-label="Mail"
                 href="mailto:contact@zli.works"
                 className="text-gray-400 hover:text-brand-primary transition-colors"
               >
