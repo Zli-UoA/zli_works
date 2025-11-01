@@ -1,8 +1,7 @@
 import { LuMail } from "react-icons/lu";
 import { SiGithub, SiX } from "react-icons/si";
-import { href, Link } from "react-router";
+import { Link, href } from "react-router";
 import { Logo } from "~/components/logo";
-import { Button } from "~/components/ui/button";
 
 export const Footer = () => {
   return (

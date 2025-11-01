@@ -1,4 +1,6 @@
+import { Link, href } from "react-router";
 import { Logo } from "~/components/logo";
+import { Button } from "~/components/ui/button";
 import {
   Card,
   CardContent,
@@ -8,8 +10,6 @@ import {
 } from "~/components/ui/card";
 import isolation from "./assets/isolation.png";
 import minimum from "./assets/minimum.png";
-import { Button } from "~/components/ui/button";
-import { href, Link } from "react-router";
 
 export default () => {
   return (
@@ -102,7 +102,7 @@ export default () => {
             <h2 className="text-3xl font-bold">
               Clear Space and Minimum Height
             </h2>
-            <div className="grid grid-cols-1 grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <Card>
                 <CardHeader>
                   <CardTitle>Clear Space</CardTitle>
