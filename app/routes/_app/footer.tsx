@@ -1,6 +1,8 @@
 import { LuMail } from "react-icons/lu";
 import { SiGithub, SiX } from "react-icons/si";
+import { href, Link } from "react-router";
 import { Logo } from "~/components/logo";
+import { Button } from "~/components/ui/button";
 
 export const Footer = () => {
   return (
@@ -35,6 +37,52 @@ export const Footer = () => {
                 <LuMail className="h-6 w-6" />
               </a>
             </div>
+          </div>
+          <div className="flex flex-col">
+            <Link
+              to={href("/brand")}
+              className="text-gray-400 hover:text-brand-primary transition-colors"
+            >
+              brand
+            </Link>
+            <Link
+              to={href("/join")}
+              className="text-gray-400 hover:text-brand-primary transition-colors"
+            >
+              join
+            </Link>
+            <Link
+              to={href("/contact")}
+              className="text-gray-400 hover:text-brand-primary transition-colors"
+            >
+              contact
+            </Link>
+          </div>
+          <div className="flex flex-col">
+            <a
+              href="https://blog.zli.works"
+              className="text-gray-400 hover:text-brand-primary transition-colors"
+            >
+              blog
+            </a>
+            <a
+              href="https://x.com/ZliOfficial"
+              className="text-gray-400 hover:text-brand-primary transition-colors"
+            >
+              Twitter
+            </a>
+            <a
+              href="https://zli.connpass.com"
+              className="text-gray-400 hover:text-brand-primary transition-colors"
+            >
+              connpass
+            </a>
+            <a
+              href="https://github.com/Zli-UoA"
+              className="text-gray-400 hover:text-brand-primary transition-colors"
+            >
+              GitHub
+            </a>
           </div>
         </div>
         <div className="mt-6 pt-6 border-t border-brand-secondary text-center text-gray-400">
