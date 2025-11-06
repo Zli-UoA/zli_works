@@ -141,17 +141,17 @@ export default () => {
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <Button asChild variant="secondary">
-                    <a href="/public/logo_png.zip" download>
+                    <a href="/logo_png.zip" download>
                       PNG ダウンロード
                     </a>
                   </Button>
                   <Button asChild variant="secondary">
-                    <a href="/public/logo_svg.zip" download>
+                    <a href="/logo_svg.zip" download>
                       SVG ダウンロード
                     </a>
                   </Button>
                   <Button asChild>
-                    <a href="/public/logo_all.zip" download>
+                    <a href="/logo_all.zip" download>
                       全てダウンロード
                     </a>
                   </Button>
