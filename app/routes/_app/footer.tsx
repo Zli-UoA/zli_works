@@ -28,13 +28,6 @@ export const Footer = () => {
               >
                 <SiX className="h-6 w-6" />
               </a>
-              <a
-                aria-label="Mail"
-                href="mailto:contact@zli.works"
-                className="text-gray-400 hover:text-brand-primary transition-colors"
-              >
-                <LuMail className="h-6 w-6" />
-              </a>
             </div>
           </div>
           <div className="flex flex-col">
